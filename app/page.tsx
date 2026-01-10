@@ -35,18 +35,7 @@ export default function Home() {
             FitGuru365
           </span>
         </h1>
-        <div className="flex items-center justify-center gap-2 mt-4">
-        <Image
-          src="/instagram.png"
-          alt="Instagram"
-          width={22}
-          height={22}
-          className="opacity-100"
-          />
-        <span className="text-slate-700 font-medium text-lg">
-          @real_prash
-        </span>
-        </div>
+
 
         
         <div className="space-y-4">
