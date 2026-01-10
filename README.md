@@ -1,6 +1,8 @@
 # FitGuru365 🏋️‍♂️🤖
 
 > **Your Transformation, Automated by Intelligence.**
+>
+> Live Demo: https://fit-guru365.vercel.app/
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
