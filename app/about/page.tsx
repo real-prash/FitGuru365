@@ -79,7 +79,7 @@ export default function AboutPage() {
               Beyond the gym, I am a tech enthusiast with a strong foundation in full-stack development. I hold a <strong>BSc in Computer Science</strong> (Minor in Mathematics) from the <strong>University of Manitoba</strong>.
             </p>
             <p className="text-slate-600 leading-relaxed mb-6">
-              I specialize in building scalable applications using modern stacks like <strong>React, Next.js, and MongoDB</strong>. My experience ranges from interning at <strong>Stratbeans Learning Solutions</strong>—contributing to an LMS used by 5M+ learners—to building complex real-time platforms.
+              I specialize in building scalable applications using modern stacks like <strong>React, Next.js, TypeScript, Go, PostgreSQL, and MongoDB</strong>. My experience includes designing distributed backend services, real-time systems, and production-ready platforms that are actively used by real users.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs rounded-full font-medium">Next.js 15</span>
