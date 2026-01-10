@@ -1,134 +1,85 @@
-# FitGuru365 Project Proposal
+# FitGuru365: AI-Powered Fitness Coaching Platform
+### Project Proposal & Specification
 
-## Project Summary and Vision
+**Prepared By:** Prashant Nigam
+**Date:** January 2026
 
-FitGuru365 is a comprehensive fitness-coaching web application designed to help users reach their personal health and fitness goals through structured programs, real-time guidance, and community accountability.
-The vision of FitGuru365 is to simplify the fitness journey for people of all experience levels, offering personalized nutrition plans, tailored workout programs, habit-tracking tools, and ongoing accountability to ensure consistent progress. 
-The platform combines evidence-based fitness methodologies with intuitive user experience, aiming to make goal-setting, tracking, and lifestyle changes easier and more sustainable.
+---
 
-FitGuru365 prioritizes long-term results by helping users build healthy habits rather than relying on short bursts of motivation.
-With built-in tools to calculate calorie needs, estimate one-rep maxes, track workout history, and engage with a supportive community, FitGuru365 is designed to serve as a daily fitness companion—365 days a year.
+## 1. Executive Summary
+FitGuru365 is a full-stack, AI-driven fitness coaching application designed to bridge the gap between expensive personal coaching and generic fitness apps. While most apps provide static plans, FitGuru365 utilizes a proprietary **"Smart Engine"** and **Generative AI (Google Gemini)** to adapt to the user's biology in real-time.
 
-## Core Features
+The platform offers a holistic ecosystem where users receive personalized nutrition targets, AI-generated meal & workout plans, and weekly metabolic adjustments based on their actual progress and adherence data. It is designed to serve as a daily companion—365 days a year—simplifying the complex math of body transformation.
 
-### 1. Personalized Goal Setting
+## 2. Core Features & Functionality
 
-Users will be able to define their fitness goals such as fat loss, muscle gain, strength building, general health improvement, or maintaining current physique. 
-The system will automatically use this information to tailor all app recommendations and plans.
+### 🧠 2.1. AI-Driven Plan Generation (Google Gemini)
+Unlike static templates, FitGuru365 uses Large Language Models to generate unique plans on demand.
+* **Custom Diet Planner:** Generates detailed daily meal plans considering specific calorie/macro targets, dietary restrictions (Vegan, Keto, etc.), allergies, and favorite foods.
+* **Intelligent Workout Builder:** Creates training splits (Push/Pull/Legs, Upper/Lower, etc.) tailored to the user's experience level, goal, and frequency (2-6 days/week).
+* **Rate Limiting:** Implements a strict "One Plan Per Day" limit to ensure thoughtful planning and prevent API abuse.
 
-### 2. Custom Diet Plan Builder
+### ⚙️ 2.2. The "Smart Adjustment Engine"
+The app’s core differentiator is its ability to act like a real coach.
+* **Weekly Check-Ins:** Users log their weight and adherence (Diet/Training consistency %).
+* **Dynamic Calibration:** The engine analyzes the rate of weight change against the user's goal.
+    * *Plateau Detection:* If weight loss stalls while adherence is high, calories are automatically lowered.
+    * *Safety Guardrails:* If weight loss is too rapid (>1% body weight/week), calories are increased to preserve muscle mass.
+* **Bio-Individual Constraints:** Logic gates automatically adjust protein requirements based on Age (>30) and Experience Level to ensure realistic, safe targets.
 
-FitGuru365 will generate diet plans aligned with the user’s goals, dietary preferences (vegetarian, vegan, high-protein, low-carb, keto, etc.), and calorie targets. 
-Plans will include daily meal suggestions, macronutrient breakdowns, and weekly adjustments based on progress.
+### 📊 2.3. Interactive Dashboard
+A centralized hub for tracking progress and daily actions.
+* **Visual Analytics:** Interactive charts (powered by Recharts) display weight trends over time.
+* **Live Macro Tracking:** Displays current daily targets for Protein, Carbs, Fats, and Calories.
+* **In-App Message Center:** A notification system that alerts users when they are overdue for a weigh-in or have incomplete profile data.
 
-### 3. Workout Plan Generator
+### 📅 2.4. Accountability Systems
+* **Calendar Integration:** Users can click a single button to add a recurring "Weekly Weigh-In" reminder to their Google/Apple Calendar.
+* **Consistency Tracking:** Users self-report "Diet Adherence" and "Training Adherence" (0-100%) with every log, which feeds into the adjustment algorithm.
 
-The platform will create personalized workout routines based on user goals, experience level, available equipment, and preferred training style (push-pull-legs, full-body, upper/lower, strength, hypertrophy, etc.). 
-Plans will adapt weekly based on user feedback and progress tracking.
+## 3. Technology Stack
 
-### 4. 1RM (One-Rep Max) Calculator
+### Frontend
+* **Framework:** Next.js 15 (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS + Shadcn/UI
+* **Visualization:** Recharts (Data visualization library)
+* **Icons:** Lucide React
 
-Users can calculate their estimated one-rep max for compound lifts (bench press, squat, deadlift, overhead press) to help design strength-based programming and track improvements over time.
+### Backend & Infrastructure
+* **Database:** MongoDB (via Mongoose ODM)
+* **Authentication:** Firebase Auth (Secure, token-based session management)
+* **AI Integration:** Google GenAI SDK (Gemini 2.5 Flash Model)
+* **API:** Next.js Server Actions & API Routes
 
-### 5. Calorie & Macro Calculator
+## 4. User Stories
 
-The app will calculate daily caloric targets and macronutrient ratios (protein, carbs, fats) based on user goals, body metrics, activity level, and timeline.
+### Onboarding & Profile
+1.  **Smart Onboarding:** "As a user, I want to input my age, height, weight, and experience level so the app can calculate my exact BMR and TDEE."
+2.  **Constraint Logic:** "As a beginner or older adult, I want the app to automatically adjust protein recommendations so I'm not overwhelmed by unrealistic targets."
 
-### 6. Accountability & Coaching Support
+### AI Planning
+3.  **Diet Generation:** "As a user with a peanut allergy who loves chicken, I want a meal plan that excludes nuts and includes chicken recipes while hitting my exact 2200 calorie goal."
+4.  **Workout Generation:** "As a busy professional who can only train 3 days a week, I want a full-body split designed specifically for muscle gain."
 
-FitGuru365 will include reminders, progress check-ins, AI-based accountability prompts, mood/energy logging, and motivational support messages. A premium version may include access to real coaches.
+### Progress & Adjustment
+5.  **Weekly Log:** "As a user, I want to log my weight once a week and have the app tell me if I'm on track."
+6.  **Auto-Adjustment:** "As a user hitting a plateau, I want the app to automatically lower my calories slightly so I can keep losing fat without doing the math myself."
+7.  **Reminders:** "As a forgetful user, I want to add a reminder to my Google Calendar so I never miss a check-in."
 
-### 7. Progress, Consistency & Tracking Tools
+## 5. System Architecture & Safety
 
-Users can log workouts, track diet adherence, record weight changes, monitor inches, log PRs, track macros, and visualize consistency through weekly/monthly stats.
+FitGuru365 implements several layers of logic to ensure user safety and data integrity:
 
-### 8. Social Community & Peer Support
+* **Metric Bounds:** Inputs are validated (e.g., Age 10-70, Weight 30-150kg) to prevent dangerous calculations.
+* **BMI Awareness:** The initial calorie calculator adjusts deficits based on BMI (e.g., higher BMI allows for slightly more aggressive deficits safely).
+* **Secure Data:** All sensitive user data is stored in MongoDB with protected API routes that verify Firebase Authentication tokens before every request.
 
-Users can add friends, join groups, share progress posts, and find partners with similar goals. This feature adds encouragement, motivation, and a sense of community to help users stay consistent.
+## 6. Future Roadmap
 
-## Technologies 
+* **1RM (One-Rep Max) Calculator:** To assist with strength programming.
+* **Social Community:** Friend lists and leaderboard integration.
+* **Premium Coaching Access:** Direct chat integration with certified trainers.
 
-Frontend:
-Next.js (React) + TypeScript
-Tailwind CSS + shadcn/ui
-TanStack Query (React Query), Zustand, Chart.js
-
-
-
-
-
-## User Stories
-
-1. Goal Setting & Personalization
-
-“As a new user, I want to enter my fitness goal so the app can create a tailored plan for me.”
-
-“As a user, I want to update my fitness goal anytime so I can change my direction if needed.”
-
-“As a user, I want to input my metrics (height, weight, age, activity level) so I can receive more accurate recommendations.”
-
-2. Diet Plan
-
-“As a user, I want a diet plan designed for my goal (fat loss, muscle gain, maintenance) so I know what to eat.”
-
-“As a user, I want to choose if I prefer vegetarian or non-vegetarian meals so the plan fits my lifestyle.”
-
-“As a user, I want to see daily calorie and macro breakdowns so I can track my nutritional intake.”
-
-“As a user, I want the ability to update my diet preferences so the app adapts if my eating style changes.”
-
-3. Workout Plan
-
-“As a user, I want the app to create a workout plan based on my goal so I know exactly what exercises to follow.”
-
-“As a user, I want workouts to adjust weekly so I can progressively overload.”
-
-“As a user, I want to choose training style and available equipment so the plan is realistic.”
-
-“As a user, I want to view exercise videos or instructions so I know how to perform movements correctly.”
-
-4. 1RM Calculator
-
-“As a user, I want to estimate my 1RM so I can train using accurate percentages.”
-
-“As a user, I want the app to calculate my 1RM based on reps and weight so I don’t need external tools.”
-
-5. Calorie/Macro Calculator
-
-“As a user, I want to calculate how many calories I need for my goal so I can make informed decisions.”
-
-“As a user, I want to see macros broken down so I know how much protein, carbs, and fats to consume.”
-
-6. Accountability & Support
-
-“As a user, I want reminders to log my workouts so I stay consistent.”
-
-“As a user, I want motivational messages so I stay on track even when I feel low.”
-
-“As a user, I want weekly check-ins so I can evaluate my progress.”
-
-“As a user, I want to log my mood and energy so I can understand patterns in my performance.”
-
-7. Tracking & Consistency
-
-“As a user, I want to track my workouts so I can measure my progress over time.”
-
-“As a user, I want to see graphs and stats showing my consistency so I stay motivated.”
-
-“As a user, I want the ability to track weight, inches, and body fat so I have multiple indicators of progress.”
-
-“As a user, I want to record my PRs so I can see my strength improvements.”
-
-8. Community & Social Features
-
-“As a user, I want to connect with friends who also work out so we can motivate each other.”
-
-“As a user, I want to join groups based on my goals so I feel supported.”
-
-“As a user, I want to share progress posts so I can celebrate milestones.”
-
-
-
-
-
-
+---
+**FitGuru365** represents the future of accessible fitness—where AI handles the planning, and the user focuses on the execution.

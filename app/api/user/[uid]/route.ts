@@ -4,15 +4,15 @@ import User from "@/models/User";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ uid: string }> } // 1. Change type to Promise
+  { params }: { params: Promise<{ uid: string }> } 
 ) {
   try {
     await connectDB();
     
-    // 2. Await the params to extract the uid correctly
+    
     const { uid } = await params;
     
-    console.log("Searching for Firebase UID:", uid); // Debug log for your terminal
+    console.log("Searching for Firebase UID:", uid); 
 
     const user = await User.findOne({ firebaseUid: uid });
 

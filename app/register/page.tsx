@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/firebase"; 
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // Import Shadcn Button
+import { Button } from "@/components/ui/button"; 
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -71,7 +71,7 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4 py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-       {/* Background decoration matching homepage */}
+    
        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-50 opacity-50 blur-3xl rounded-full pointer-events-none -z-10" />
 
       <div className="w-full max-w-md space-y-8 rounded-2xl bg-white p-10 shadow-xl border border-slate-100">
@@ -123,7 +123,7 @@ export default function RegisterPage() {
                   <option value="female">Female</option>
                   <option value="other">Other</option>
               </select>
-               {/* Custom arrow icon for select */}
+              
                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
                 <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
               </div>
@@ -155,7 +155,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Shadcn Button with Gradient */}
+          
           <Button
             type="submit"
             disabled={loading}

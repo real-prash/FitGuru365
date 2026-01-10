@@ -11,13 +11,13 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false);
   const [userUid, setUserUid] = useState<string | null>(null);
 
-  // Form State
+
   const [age, setAge] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [fitnessGoal, setFitnessGoal] = useState("lose_fat");
   const [experience, setExperience] = useState("beginner");
-  const [workoutFrequency, setWorkoutFrequency] = useState(3); // Default to 3 days
+  const [workoutFrequency, setWorkoutFrequency] = useState(3);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,7 +45,7 @@ export default function OnboardingPage() {
           weight: Number(weight),
           fitnessGoal,
           experience,
-          workoutFrequency, // Send new field
+          workoutFrequency,
         }),
       });
 
@@ -68,13 +68,15 @@ export default function OnboardingPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Stats Grid */}
+        
           <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Age</label>
               <input
                 type="number"
                 required
+                min="10" 
+                max="70" 
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
@@ -86,6 +88,8 @@ export default function OnboardingPage() {
               <input
                 type="number"
                 required
+                min="100"
+                max="215" 
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
@@ -97,6 +101,8 @@ export default function OnboardingPage() {
               <input
                 type="number"
                 required
+                min="30"
+                max="150" 
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
@@ -105,7 +111,7 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Fitness Goal */}
+    
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">Fitness Goal</label>
             <select
@@ -119,7 +125,7 @@ export default function OnboardingPage() {
             </select>
           </div>
 
-          {/* NEW: Workout Frequency Selector */}
+        
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
               Workouts Per Week ({workoutFrequency} Days)
@@ -142,7 +148,7 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Experience Level */}
+      
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">Experience Level</label>
             <div className="grid grid-cols-1 gap-3">

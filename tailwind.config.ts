@@ -6,6 +6,6 @@ const config: Config = {
   theme: {
     // ... theme settings ...
   },
-  plugins: [require("tailwindcss-animate")], // <--- Make sure this line exists and is spelled correctly
+  plugins: [require("tailwindcss-animate")], 
 };
 export default config;

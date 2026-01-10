@@ -40,7 +40,7 @@ export default function LoginPage() {
     }
     try {
       await sendPasswordResetEmail(auth, email);
-      setMessage("Password reset email sent! Check your inbox.");
+      setMessage("Password reset email sent! Check your inbox and spam folder.");
       setError(null);
     } catch (err: any) {
       setError(err.message || "Failed to send reset email.");
@@ -49,7 +49,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4 relative overflow-hidden">
-      {/* Background decoration matching homepage */}
+  
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-50 opacity-50 blur-3xl rounded-full pointer-events-none -z-10" />
 
       <div className="w-full max-w-md space-y-8 rounded-2xl bg-white p-10 shadow-xl border border-slate-100">
@@ -96,8 +96,7 @@ export default function LoginPage() {
               Forgot password?
             </button>
           </div>
-
-          {/* Shadcn Button with Gradient */}
+      
           <Button
             type="submit"
             disabled={loading}

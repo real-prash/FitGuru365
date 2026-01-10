@@ -29,10 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Navbar sits at the top of the body */}
+      
         <Navbar />
         
-        {/* Main content area */}
+        
         <main>
           {children}
         </main>
